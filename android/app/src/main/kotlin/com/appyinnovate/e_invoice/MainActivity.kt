@@ -1,4 +1,4 @@
-package com.appyinnovate.e_invoice
+package com.example.tager_store
 
 import io.flutter.embedding.android.FlutterActivity
 

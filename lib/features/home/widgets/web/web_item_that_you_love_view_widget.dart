@@ -26,7 +26,7 @@ class WebItemThatYouLoveViewWidget extends StatefulWidget {
 }
 
 class _WebItemThatYouLoveViewWidgetState extends State<WebItemThatYouLoveViewWidget> {
-  final cl.CarouselController carouselController = cl.CarouselController();
+  final cl.CarouselSliderController carouselController = cl.CarouselSliderController();
 
   @override
   Widget build(BuildContext context) {

@@ -21,7 +21,7 @@ class PromoCodeBannerView extends StatefulWidget {
 }
 
 class _PromoCodeBannerViewState extends State<PromoCodeBannerView> {
-  final cl.CarouselController carouselController = cl.CarouselController();
+  final cl.CarouselSliderController carouselController = cl.CarouselSliderController();
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CouponController>(builder: (couponController) {
