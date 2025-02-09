@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "290656496753",
+    "project_id": "tager-store",
+    "storage_bucket": "tager-store.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:290656496753:android:9c98dc48c0f731601fbfd0",
+        "android_client_info": {
+          "package_name": "com.example.tager_store"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDG-GfNzHbOadE9pevMG0lWKHCGxmk7XKA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
