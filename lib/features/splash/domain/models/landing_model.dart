@@ -121,7 +121,7 @@ class SpecialCriterias {
     id = json['id'];
     title = json['title'];
     imageFullUrl = json['image_full_url'];
-    status = json['status'];
+    status = int.tryParse(json['status']);
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     if (json['translations'] != null) {
