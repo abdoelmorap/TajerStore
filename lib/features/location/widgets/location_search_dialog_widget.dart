@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sixam_mart/features/location/controllers/location_controller.dart';
@@ -25,7 +26,6 @@ class LocationSearchDialogWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final TextEditingController controller = TextEditingController();
-
     return Container(
       width: 500,
       margin: EdgeInsets.only(
@@ -43,16 +43,33 @@ class LocationSearchDialogWidget extends StatelessWidget {
             child: TypeAheadField(
               controller: controller,
               suggestionsCallback: (pattern) async {
-                return await Get.find<LocationController>()
-                    .searchLocation(context, pattern);
+                if (pattern.isEmpty) return <PredictionModel>[];
+                final List<Location> locations =
+                    await locationFromAddress(pattern);
+                final List<PredictionModel> predictions = [];
+                for (final Location location in locations) {
+                  List<Placemark> placemarks = await placemarkFromCoordinates(
+                    location.latitude,
+                    location.longitude,
+                  );
+                  for (Placemark placemark in placemarks) {
+                    predictions.add(PredictionModel(
+                      description: placemark.name!,
+                      placeId: placemark.name!,
+                    ));
+                  }
+                }
+                return predictions;
               },
               itemBuilder: (context, PredictionModel suggestion) {
                 return Padding(
                   padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
-                  child: Row(children: [
-                    const Icon(Icons.location_on),
-                    Expanded(
-                      child: Text(suggestion.description!,
+                  child: Row(
+                    children: [
+                      const Icon(Icons.location_on),
+                      Expanded(
+                        child: Text(
+                          suggestion.description!,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: Theme.of(context)
@@ -64,9 +81,11 @@ class LocationSearchDialogWidget extends StatelessWidget {
                                     .bodyLarge!
                                     .color,
                                 fontSize: Dimensions.fontSizeLarge,
-                              )),
-                    ),
-                  ]),
+                              ),
+                        ),
+                      ),
+                    ],
+                  ),
                 );
               },
               onSelected: (PredictionModel suggestion) {

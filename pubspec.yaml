@@ -59,6 +59,7 @@ dependencies:
   flutter_svg: ^2.0.10+1
   flutter_widget_from_html_core: ^0.15.2
   image: ^4.2.0
+  geocoding: ^3.0.0
 
 dev_dependencies:
   flutter_test:
