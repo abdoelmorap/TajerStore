@@ -1,4 +1,4 @@
-package com.example.tager_store
+package com.example.tajrli
 
 import io.flutter.embedding.android.FlutterActivity
 
